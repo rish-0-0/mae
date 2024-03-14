@@ -4,7 +4,11 @@
   "description": "Backend to the Management Arsenal for Employees",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +26,17 @@
   },
   "homepage": "https://github.com/rish-0-0/mae#readme",
   "dependencies": {
+    "@fastify/cors": "^9.0.1",
     "@fastify/jwt": "^8.0.0",
-    "@fastify/swagger": "^8.14.0",
+    "@fastify/middie": "^8.3.0",
+    "@fastify/swagger": "^7.6.1",
+    "constants": "file:../constants",
     "fastify": "^4.26.2"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^10.3.0"
   }
 }
