@@ -1,0 +1,29 @@
+{
+  "name": "mae-backend",
+  "version": "0.0.0",
+  "description": "Backend to the Management Arsenal for Employees",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rish-0-0/mae.git"
+  },
+  "keywords": [
+    "nodejs",
+    "knex",
+    "cockroach"
+  ],
+  "author": "Rishabh Anand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rish-0-0/mae/issues"
+  },
+  "homepage": "https://github.com/rish-0-0/mae#readme",
+  "dependencies": {
+    "@fastify/jwt": "^8.0.0",
+    "@fastify/swagger": "^8.14.0",
+    "fastify": "^4.26.2"
+  }
+}
