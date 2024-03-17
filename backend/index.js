@@ -2,7 +2,6 @@ const fastify = require('fastify');
 const {
   jwtSecret,
   version,
-  host,
   serverPort: port,
 } = require('constants/common');
 
@@ -26,7 +25,7 @@ const build = async () => {
           in: 'header',
         },
       },
-      host: `${host}:${port}`,
+      host: `localhost:${port}`,
       schemes: ['http', 'https'],
       consumes: ['application/json'],
       produces: ['application/json'],

@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  backend:
+    build:
+      context: ./
+      dockerfile: ./backend/Dockerfile
+    container_name: mae-backend
+    volumes:
+      - /usr/src/app/node_modules
+    restart: always
+    ports:
+      - 4000:4000
+    command: npm start
+
