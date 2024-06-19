@@ -1,7 +1,13 @@
-# Management Arsenal for Employees
+# Management Arsenal of Tools for Employees
 
 ## Start the server
 
 ```bash
-docker compose up -d
+make backend
+```
+
+## Start the ui
+
+```bash
+cd ui && npm run build && npm run preview -- --host
 ```
