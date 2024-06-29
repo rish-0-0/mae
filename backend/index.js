@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fastify = require('fastify');
 const {
   jwtSecret,
@@ -11,6 +12,10 @@ const build = async () => {
   await app.register(require('@fastify/jwt'),
       {secret: process.env.SECRET || jwtSecret});
   await app.register(require('@fastify/cors'));
+  await app.register(require('@fastify/mongodb'), {
+    forceClose: true,
+    url: process.env.MONGO_CONNECTION_URI,
+  });
   await app.register(require('@fastify/swagger'), {
     swagger: {
       info: {
