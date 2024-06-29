@@ -12,7 +12,6 @@ const build = async () => {
   await app.register(require('@fastify/jwt'),
       {secret: process.env.SECRET || jwtSecret});
   await app.register(require('@fastify/cors'));
-  console.log('PO', process.env.MONGO_CONNECTION_URI);
   await app.register(require('@fastify/mongodb'), {
     forceClose: true,
     url: process.env.MONGO_CONNECTION_URI,
