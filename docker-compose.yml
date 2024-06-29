@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.8'
 
 services:
   backend:
@@ -6,10 +6,36 @@ services:
       context: ./
       dockerfile: ./backend/Dockerfile
     container_name: mae-backend
+    depends_on:
+      - mongo
     volumes:
       - /usr/src/app/node_modules
     restart: always
     ports:
       - 4000:4000
     command: npm start
+    networks:
+      - mate-network
+
+  mongo:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE     : ${MONGO_INITDB_DATABASE}
+    volumes:
+      - mate-mongodb-data:/data/db
+    networks:
+      - mate-network
+    
+
+volumes:
+  mate-mongodb-data:
+
+networks:
+  mate-network:
+    driver: bridge
+
 
