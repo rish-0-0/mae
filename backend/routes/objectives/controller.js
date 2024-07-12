@@ -66,7 +66,10 @@ async function updateObjective(fastify, request, reply) {
  */
 async function deleteObjectives(fastify, request, reply) {
   const objectivesCollection = fastify.mongo.db.collection('objectives');
-  const {ids} = request.body;
+  const ObjectId = fastify.mongo.ObjectId;
+
+  const {ids: idsFromBody} = request.body;
+  const ids = idsFromBody.map((id) => new ObjectId(id));
 
   const deleted = await objectivesCollection.deleteMany({_id: {$in: ids}});
   return reply
