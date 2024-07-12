@@ -12,16 +12,16 @@ const {objectiveBodySchema} = require('./schema');
  */
 async function objectivesRoutes(fastify) {
   fastify.post('/', {schema: {body: objectiveBodySchema}},
-      async (request, reply) => createObjective(fastify, request, reply),
+      async (request, reply) => await createObjective(fastify, request, reply),
   );
   fastify.get('/', {},
-      async (request, reply) => getObjectives(fastify, request, reply),
+      async (request, reply) => await getObjectives(fastify, request, reply),
   );
   fastify.patch('/:id', {},
-      async (request, reply) => updateObjective(fastify, request, reply),
+      async (request, reply) => await updateObjective(fastify, request, reply),
   );
   fastify.delete('/', {},
-      async (request, reply) => deleteObjectives(fastify, request, reply),
+      async (request, reply) => await deleteObjectives(fastify, request, reply),
   );
 }
 
