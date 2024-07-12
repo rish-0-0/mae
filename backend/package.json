@@ -33,7 +33,8 @@
     "@fastify/swagger": "^7.6.1",
     "constants": "file:../constants",
     "dotenv": "^16.4.5",
-    "fastify": "^4.26.2"
+    "fastify": "^4.26.2",
+    "fluent-json-schema": "^4.2.1"
   },
   "devDependencies": {
     "chai": "^5.1.0",

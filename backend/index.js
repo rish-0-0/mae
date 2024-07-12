@@ -1,7 +1,6 @@
 require('dotenv').config();
 const fastify = require('fastify');
 const {
-  jwtSecret,
   version,
   serverPort: port,
 } = require('constants/common');
@@ -10,7 +9,7 @@ const build = async () => {
   const app = fastify({logger: true});
   await app.register(require('@fastify/middie'));
   await app.register(require('@fastify/jwt'),
-      {secret: process.env.SECRET || jwtSecret});
+      {secret: process.env.JWT_SECRET});
   await app.register(require('@fastify/cors'));
   await app.register(require('@fastify/mongodb'), {
     forceClose: true,
@@ -40,6 +39,8 @@ const build = async () => {
     exposeRoute: true,
   });
   app.get('/', (_, reply) => reply.send(app.printRoutes()));
+  app.register(require('./routes/external'), {prefix: '/api'});
+  app.register(require('./routes/internal'), {prefix: '/internal/api'});
   return app;
 };
 
