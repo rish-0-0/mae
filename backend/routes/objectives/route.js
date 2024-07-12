@@ -1,4 +1,9 @@
-const {createObjective, getObjectives} = require('./controller');
+const {
+  createObjective,
+  getObjectives,
+  updateObjective,
+  deleteObjectives,
+} = require('./controller');
 const {objectiveBodySchema} = require('./schema');
 
 /**
@@ -11,6 +16,12 @@ async function objectivesRoutes(fastify) {
   );
   fastify.get('/', {},
       async (request, reply) => getObjectives(fastify, request, reply),
+  );
+  fastify.patch('/:id', {},
+      async (request, reply) => updateObjective(fastify, request, reply),
+  );
+  fastify.delete('/', {},
+      async (request, reply) => deleteObjectives(fastify, request, reply),
   );
 }
 
