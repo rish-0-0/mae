@@ -3,11 +3,11 @@
 ## Start the server
 
 ```bash
-make backend
+make run-server
 ```
 
 ## Start the ui
 
 ```bash
-cd ui && npm run build && npm run preview -- --host
+make run-ui
 ```

@@ -14,6 +14,8 @@ import { createLowlight } from 'lowlight';
 import TaskItem from '@tiptap/extension-task-item';
 import TipTapTaskList from '@tiptap/extension-task-list';
 import ts from 'highlight.js/lib/languages/typescript';
+import { useContext, useEffect } from 'react';
+import { CreateNewContext } from '.';
 
 const lowlight = createLowlight();
 
@@ -30,7 +32,7 @@ function FocusEditor({content}) {
       SubScript,
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      Placeholder.configure({ placeholder: 'Start writing your goals for the week' }),
+      Placeholder.configure({ placeholder: 'Start writing your goals' }),
       getTaskListExtension(TipTapTaskList),
       Color,
       CodeBlockLowlight.configure({ lowlight }),
@@ -44,6 +46,16 @@ function FocusEditor({content}) {
     content
   });
 
+  const {setEditor: setParentEditor} = useContext(CreateNewContext);
+
+  useEffect(() => {
+    if (editor) setParentEditor(editor);
+
+    return () => {
+      setParentEditor(null);
+    };
+  }, [setParentEditor, editor]);
+
   return (
     <RichTextEditor editor={editor}>
       {editor && (
@@ -56,7 +68,7 @@ function FocusEditor({content}) {
         </BubbleMenu>
       )}
       <RichTextEditor.Toolbar sticky stickyOffset={60}>
-      <RichTextEditor.ColorPicker
+        <RichTextEditor.ColorPicker
           colors={[
             '#25262b',
             '#868e96',
@@ -74,6 +86,22 @@ function FocusEditor({content}) {
             '#fd7e14',
           ]}
         />
+        
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.H1 />
+          <RichTextEditor.H2 />
+          <RichTextEditor.H3 />
+          <RichTextEditor.H4 />
+        </RichTextEditor.ControlsGroup>
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.AlignLeft />
+          <RichTextEditor.AlignCenter />
+          <RichTextEditor.AlignJustify />
+          <RichTextEditor.AlignRight />
+        </RichTextEditor.ControlsGroup>
+
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Bold />
           <RichTextEditor.Italic />
@@ -85,32 +113,23 @@ function FocusEditor({content}) {
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>
-          <RichTextEditor.H1 />
-          <RichTextEditor.H2 />
-          <RichTextEditor.H3 />
-          <RichTextEditor.H4 />
-        </RichTextEditor.ControlsGroup>
-
-        <RichTextEditor.ControlsGroup>
           <RichTextEditor.Blockquote />
           <RichTextEditor.Hr />
           <RichTextEditor.BulletList />
           <RichTextEditor.OrderedList />
           <RichTextEditor.Subscript />
           <RichTextEditor.Superscript />
-          <RichTextEditor.CodeBlock />
+        </RichTextEditor.ControlsGroup>
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.TaskList />
+          <RichTextEditor.TaskListLift />
+          <RichTextEditor.TaskListSink />
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Link />
           <RichTextEditor.Unlink />
-        </RichTextEditor.ControlsGroup>
-
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.AlignLeft />
-          <RichTextEditor.AlignCenter />
-          <RichTextEditor.AlignJustify />
-          <RichTextEditor.AlignRight />
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>

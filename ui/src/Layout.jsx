@@ -1,6 +1,8 @@
 import { AppShell, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Outlet } from 'react-router-dom';
+import Logo from "@/assets/mate.svg?react";
+import Navbar from '@/Navbar';
 
 function Layout() {
   const [opened, { toggle }] = useDisclosure();
@@ -22,10 +24,12 @@ function Layout() {
           hiddenFrom="sm"
           size="sm"
         />
-        <div>Logo</div>
+        <Logo className="mate-logo" />
       </AppShell.Header>
 
-      <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+      <AppShell.Navbar p={0}>
+        <Navbar />
+      </AppShell.Navbar>
 
       <AppShell.Main>
         <Outlet />
